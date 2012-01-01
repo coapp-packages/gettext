@@ -14,72 +14,32 @@ default
     platform: x86;
  
     targets:
-    {      
-      // TODO: Determine if we really need these.
-      // "gettext-tools\src\msgunfmt.net.exe",
-      // "gettext-tools\src\msgfmt.net.exe",
-      
-      "gettext-tools\src\.libs\urlget.exe",
-      "gettext-tools\src\.libs\hostname.exe",
-      "gettext-tools\src\.libs\recode-sr-latin.exe",
-      "gettext-tools\src\.libs\msguniq.exe",
-      "gettext-tools\src\.libs\msginit.exe",
-      "gettext-tools\src\.libs\msggrep.exe",
-      "gettext-tools\src\.libs\msgfilter.exe",
-      "gettext-tools\src\.libs\msgexec.exe",
-      "gettext-tools\src\.libs\msgen.exe",
-      "gettext-tools\src\.libs\msgconv.exe",
-      "gettext-tools\src\.libs\msgcomm.exe",
-      "gettext-tools\src\.libs\msgcat.exe",
-      "gettext-tools\src\.libs\msgattrib.exe",
-      "gettext-tools\src\.libs\xgettext.exe",
-      "gettext-tools\src\.libs\msgunfmt.exe",
-      "gettext-tools\src\.libs\msgmerge.exe",
-      "gettext-tools\src\.libs\msgfmt.exe",
-      "gettext-tools\src\.libs\msgcmp.exe",
-      "gettext-tools\src\.libs\libgettextsrc-0-18-1.dll",
-      
-      "gettext-tools\libgettextpo\.libs\libgettextpo-0.dll",
-      
-      "gettext-tools\gnulib-lib\.libs\libgettextlib-0-18-1.dll",
-      
-      "gettext-tools\intl\.libs\libintl-8.dll",
+    {
+      //"gettext-runtime\libasprintf\.libs\libasprintf-0.dll", // unusable because of deps on mingw, probably not needed anyway
+
+      "gettext-runtime\intl\.libs\libintl-8.dll",
       
       "gettext-runtime\src\.libs\envsubst.exe",
       "gettext-runtime\src\.libs\ngettext.exe",
-      "gettext-runtime\src\.libs\gettext.exe",
-      
-      "gettext-runtime\intl-java\gnu\gettext\GettextResource.java",
-      
-      "gettext-runtime\intl-csharp\GNU.Gettext.dll",
-      
-      "gettext-runtime\libasprintf\.libs\libasprintf-0.dll"
+      "gettext-runtime\src\.libs\gettext.exe"
     };
  
     build-command: @"
-      echo.
-      echo === === === === === === === === === === === === ===
-      echo   WARNING: This particular project is sensitive
-      echo    (read: breaks) if its path contains a space.
-      echo === === === === === === === === === === === === ===
-      echo.
-      pause
-
       :// TODO: libacl is needed for ACL support. Need to investigate if
       :// we care about this.
     
       :// FIX: In this environment, only USE_WIN32_THREADS should be used.
       :// By default, USE_POSIX_THREADS is defined which will cause a failure
       :// in the compilation of some tests hence the --enable-threads=win32.
-            
-      sh configure --enable-threads=win32
-      make all
+
+      sh coapp-build.sh
     ";
  
     clean-command: @"
-      IF EXIST Makefile make distclean
-      
       del gettext-runtime\intl-csharp\*.pdb 2>NUL
-      del gettext-tools\src\*.pdb 2>NUL
+
+	  cd gettext-runtime
+
+	  IF EXIST Makefile make distclean
     ";
 }
