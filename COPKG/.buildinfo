@@ -13,6 +13,8 @@ default
     compiler: mingw;
     platform: x86;
  
+    uses: "..\libiconv";
+ 
     targets:
     {
       //"gettext-runtime\libasprintf\.libs\libasprintf-0.dll", // unusable because of deps on mingw, probably not needed anyway
