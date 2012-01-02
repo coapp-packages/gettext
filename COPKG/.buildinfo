@@ -35,6 +35,9 @@ default
       :// in the compilation of some tests hence the --enable-threads=win32.
 
       sh coapp-build.sh
+      
+      copy gettext-runtime\intl\.libs\libintl.dll.a gettext-runtime\intl\.libs\intl.lib
+
     ";
  
     clean-command: @"
@@ -43,5 +46,6 @@ default
 	  cd gettext-runtime
 
 	  IF EXIST Makefile make distclean
+      if exist gettext-runtime\intl\.libs\intl.lib erase gettext-runtime\intl\.libs\intl.lib
     ";
 }
