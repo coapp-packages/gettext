@@ -70,14 +70,6 @@ char *alloca ();
 
 #define STATIC static
 
-/* This needs to be consistent with libgnuintl.h.in.  */
-#if defined __NetBSD__ || defined __BEOS__ || defined __CYGWIN__ || defined __MINGW32__
-/* Don't break __attribute__((format(printf,M,N))).
-   This redefinition is only possible because the libc in NetBSD, Cygwin,
-   mingw does not have a function __printf__.  */
-# define libintl_printf __printf__
-#endif
-
 /* Define auxiliary functions declared in "printf-args.h".  */
 #include "printf-args.c"
 
@@ -151,6 +143,21 @@ libintl_printf (const char *format, ...)
   va_end (args);
   return retval;
 }
+
+#if defined __NetBSD__ || defined __BEOS__ || defined _WIN32
+DLL_EXPORTED
+int
+__printf__ (const char *format, ...)
+{
+  va_list args;
+  int retval;
+
+  va_start (args, format);
+  retval = libintl_vprintf (format, args);
+  va_end (args);
+  return retval;
+}
+#endif
 
 DLL_EXPORTED
 int
