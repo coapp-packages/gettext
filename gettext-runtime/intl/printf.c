@@ -145,8 +145,9 @@ libintl_printf (const char *format, ...)
 }
 
 #if defined __NetBSD__ || defined __BEOS__ || defined _WIN32
+#undef __printf__
 DLL_EXPORTED
-int
+extern int
 __printf__ (const char *format, ...)
 {
   va_list args;
