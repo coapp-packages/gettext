@@ -5,7 +5,7 @@
     original-source-location: "http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz";
     original-source-website: "http://www.gnu.org/software/gettext/";
     license: "GNU";
-    packager: "Rafael Rivera <rafael@withinwindows.com>";
+    packager: "Vincent Povirk <madewokherd@gmail.com>";
 }
 
 default
@@ -43,9 +43,34 @@ default
     clean-command: @"
       del gettext-runtime\intl-csharp\*.pdb 2>NUL
 
-	  cd gettext-runtime
+      cd gettext-runtime
 
-	  IF EXIST Makefile make distclean
+      IF EXIST Makefile make distclean
       if exist gettext-runtime\intl\.libs\intl.lib erase gettext-runtime\intl\.libs\intl.lib
     ";
 }
+
+vc10
+{
+    // Users of this library will still need the mingw build to get libintl.h
+    compiler: vc10;
+    platform: x86;
+ 
+    uses: "..\libiconv";
+ 
+    targets:
+    {
+        "COPKG\gettext\Release\libintl-8-vs10.dll",
+        "COPKG\gettext\Release\intl.lib"
+    };
+ 
+    build-command: @"
+        msbuild /p:Platform=Win32 /p:Configuration=Release COPKG\gettext\gettext.sln
+    ";
+ 
+    clean-command: @"
+      if exist COPKG\gettext\Release rmdir /s /q  COPKG\gettext\Release > nul 2> nul
+      if exist COPKG\gettext\libintl\Release rmdir /s /q  COPKG\gettext\libintl\Release > nul 2> nul
+    ";
+}
+
