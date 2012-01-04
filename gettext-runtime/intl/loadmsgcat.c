@@ -63,6 +63,10 @@ char *alloca ();
 # include <unistd.h>
 #endif
 
+#if _MSC_VER
+# include <io.h>
+#endif
+
 #ifdef _LIBC
 # include <langinfo.h>
 # include <locale.h>
