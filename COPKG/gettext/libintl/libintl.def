@@ -11,6 +11,7 @@ EXPORTS
 	locale_charset
 	ngettext
 	textdomain
+	libintl_asprintf
 	libintl_bindtextdomain
 	libintl_bind_textdomain_codeset
 	libintl_dcgettext
@@ -24,15 +25,18 @@ EXPORTS
 	libintl_ngettext
 	libintl_printf
 	libintl_setlocale
+	libintl_snprintf
 	libintl_sprintf
 	libintl_swprintf
 	libintl_textdomain
 	libintl_vasnprintf
 	libintl_vasnwprintf
+	libintl_vasprintf
 	libintl_version
 	libintl_vfprintf
 	libintl_vfwprintf
 	libintl_vprintf
+	libintl_vsnprintf
 	libintl_vsprintf
 	libintl_vswprintf
 	libintl_vwprintf

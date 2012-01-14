@@ -198,9 +198,9 @@ libintl_sprintf (char *resultbuf, const char *format, ...)
   return retval;
 }
 
-#if HAVE_SNPRINTF
+#if 1 //HAVE_SNPRINTF // For consistency, we want to use these instead of gnulib functions.
 
-# if HAVE_DECL__SNPRINTF
+# if 1 //HAVE_DECL__SNPRINTF
    /* Windows.  */
 #  define system_vsnprintf _vsnprintf
 # else
@@ -254,7 +254,7 @@ libintl_snprintf (char *resultbuf, size_t length, const char *format, ...)
 
 #endif
 
-#if HAVE_ASPRINTF
+#if 1 // HAVE_ASPRINTF
 
 DLL_EXPORTED
 int
