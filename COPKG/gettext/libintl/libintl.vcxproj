@@ -78,13 +78,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\..\libiconv\lib\.libs;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\..\..\libiconv\$(Configuration)\$(Platform);$(LibraryPath)</LibraryPath>
     <TargetName>libintl-8-vs10d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\..\libiconv\lib\.libs;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\..\..\libiconv\$(Configuration)\$(Platform);$(LibraryPath)</LibraryPath>
     <TargetName>libintl-8-vs10</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,7 +98,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>iconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)intl.lib</ImportLibrary>
     </Link>
@@ -118,7 +118,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>iconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)intl.lib</ImportLibrary>
     </Link>

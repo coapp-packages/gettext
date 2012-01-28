@@ -13,7 +13,7 @@ default
     compiler: mingw;
     platform: x86;
  
-    uses: "..\libiconv";
+    uses: mingw="..\libiconv";
  
     targets:
     {
@@ -56,7 +56,7 @@ vc10
     compiler: vc10;
     platform: x86;
  
-    uses: "..\libiconv";
+    uses: x86="..\libiconv";
  
     targets:
     {
