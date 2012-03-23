@@ -23,6 +23,8 @@ default
 
       "gettext-runtime\intl\.libs\libintl-8.dll",
       
+	  "gettext-runtime\intl\libintl.h",
+	  
       "gettext-runtime\src\.libs\envsubst.exe",
       "gettext-runtime\src\.libs\ngettext.exe",
       "gettext-runtime\src\.libs\gettext.exe"
@@ -86,11 +88,12 @@ package
 	targets:
 	{
         @"COPKG\libintl[vc10]-${package-version}-x86.msi",
+        @"COPKG\libintl-dev-common-${package-version}-any.msi",
 	};
 
 	build-command: @"
 		cd COPKG
-		autopackage libintl.autopkg || goto failed
+		autopackage libintl.autopkg libintl-dev-common.autopkg|| goto failed
 	";
 
 	clean-command: @"del COPKG\*.msi COPKG\*.wixpdb";

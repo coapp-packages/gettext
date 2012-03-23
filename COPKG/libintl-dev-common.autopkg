@@ -1,0 +1,41 @@
+@import "version.inc";
+@import "outercurve.inc";
+@import "common.inc";
+
+package {
+    name: "libintl-dev-common";
+    version: "${package-version}";
+    arch : any;
+    
+    display-name: "libintl developer library - common files";
+    location: "http://coapp.org/repository/${OutputFilename}";
+
+    feed: "http://coapp.org/repository/packages.atom.xml";
+    publisher: "CoApp Project";
+}
+
+files[headers] {
+    root: @"..\gettext-runtime\intl";
+    include: {
+        "libintl.h"
+    };
+    
+    trim-path:all;
+    
+    destination-path:"include";
+}
+
+developer-library[libintl] {
+    headers: { 
+        headers
+    };
+}
+
+metadata {
+    summary: "libintl developer library - common files";
+    description: @"${general-description} This package provides common files for building programs using libintl.";
+    
+    licenses : {
+        lgpl
+    };
+}
