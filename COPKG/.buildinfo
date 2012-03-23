@@ -88,12 +88,18 @@ package
 	targets:
 	{
         @"COPKG\libintl[vc10]-${package-version}-x86.msi",
+        @"COPKG\libintl-dev[vc10]-${package-version}-x86.msi",
         @"COPKG\libintl-dev-common-${package-version}-any.msi",
 	};
 
 	build-command: @"
 		cd COPKG
 		autopackage libintl.autopkg libintl-dev-common.autopkg|| goto failed
+        coapp add-feed ""%cd%""
+        coapp --force-scan list
+        autopackage libintl-dev.autopkg || goto failed
+        coapp remove-feed ""%cd%""
+        coapp --force-scan list 
 	";
 
 	clean-command: @"del COPKG\*.msi COPKG\*.wixpdb";
