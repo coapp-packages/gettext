@@ -21,6 +21,6 @@ metadata {
 /* To use self-built dependencies, use ${Package.PublicKeyToken} instead of ${outercurve-publickeytoken} */
 #define { outercurve-publickeytoken: "1e373a58e25250cb"; }
 
-#define { libiconv-version: 1.13.1.5; }
+#define { libiconv-version: 1.13.1.6; }
 
 #define { libiconv-publickeytoken: "${outercurve-publickeytoken}"; }

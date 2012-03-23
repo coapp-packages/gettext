@@ -57,7 +57,7 @@ compatability-policy {
 
 manifest[libiconv] {
     assembly : {
-        libiconv
+        "libiconv[${flavor}]"
     };
     
     include : { 
