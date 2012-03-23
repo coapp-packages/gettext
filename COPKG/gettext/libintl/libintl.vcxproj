@@ -79,13 +79,13 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\..\..\libiconv\output\vc10\x86\Release;$(LibraryPath)</LibraryPath>
-    <TargetName>libintl-8-vs10d</TargetName>
+    <TargetName>libintl</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\..\..\libiconv\output\vc10\x86\Release;$(LibraryPath)</LibraryPath>
-    <TargetName>libintl-8-vs10</TargetName>
+    <TargetName>libintl</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,7 +100,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile>
-      <ImportLibrary>$(OutDir)intl.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,7 +121,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile>
-      <ImportLibrary>$(OutDir)intl.lib</ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

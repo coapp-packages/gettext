@@ -1,0 +1,91 @@
+@import "version.inc";
+@import "outercurve.inc";
+@import "common.inc";
+
+#define { 
+    flavor: "vc10";
+    arch : "x86";
+}
+
+package {
+    name: "libintl[${flavor}]";
+    version: "${package-version}";
+    arch : "${arch}";
+    
+    display-name: "gettext localization library (libintl)";
+    location: "http://coapp.org/repository/${OutputFilename}";
+
+    feed: "http://coapp.org/repository/packages.atom.xml";
+    publisher: "CoApp Project";
+}
+
+files[dlls] {
+    root: @"gettext\Release\";
+  
+    include: {
+        "libintl.dll",
+    };
+    
+    trim-path: all;
+};
+
+files[files-to-sign] {
+    include: { 
+        dlls
+    };    
+}
+
+provides {
+    feature: "library.libintl.${flavor}" = "0.18.1.1";
+}
+
+metadata {
+    summary: "gettext localization library (libintl)";
+    description: @"${general-description} This package provides a library that programs can use to select and format the appropriate messages for the user's language.";
+    
+    licenses : {
+        lgpl
+    };
+}
+
+compatability-policy {
+    minimum: "0.18.1.1";
+    maximum: "${OneLessThanCurrent}"; // this is the default
+    versions : {
+    }; // if not specified, find the versions by looking at the feeds and finding all the major/minor versions in range.
+}
+
+manifest[libiconv] {
+    assembly : {
+        libiconv
+    };
+    
+    include : { 
+        dlls
+    };
+}
+
+assembly[libintl[${flavor}]] {
+    include : {
+        dlls
+    };
+}
+
+signing {
+    attributes : {
+        company="Outercurve Foundation",
+        description="${Package.PackageDetails.SummaryDescription}",
+        product-name="gettext",
+        product-version="${package-version}",
+        file-version="${package-version}",
+    };
+    
+    replace-signature: true; 
+    include: { 
+        files-to-sign
+    };    
+}
+
+requires {
+    package: "libiconv[${flavor}]-${libiconv-version}-${arch}-${libiconv-publickeytoken}";
+}

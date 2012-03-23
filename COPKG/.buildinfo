@@ -1,10 +1,12 @@
+@import "version.inc";
+
 #product-info
 {
     product-name: "gettext";
-    version: "0.18.1.1";
+    version: "${upstream-version}";
     original-source-location: "http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz";
     original-source-website: "http://www.gnu.org/software/gettext/";
-    license: "GNU";
+    license: "mixed (GPL and LGPL)";
     packager: "Vincent Povirk <madewokherd@gmail.com>";
 }
 
@@ -60,8 +62,8 @@ vc10
  
     targets:
     {
-        "COPKG\gettext\Release\libintl-8-vs10.dll",
-        "COPKG\gettext\Release\intl.lib"
+        "COPKG\gettext\Release\libintl.dll",
+        "COPKG\gettext\Release\libintl.lib"
     };
  
     build-command: @"
@@ -77,4 +79,19 @@ vc10
 release
 {
 	uses: {default, vc10};
+}
+
+package
+{
+	targets:
+	{
+        @"COPKG\libintl[vc10]-${package-version}-x86.msi",
+	};
+
+	build-command: @"
+		cd COPKG
+		autopackage libintl.autopkg || goto failed
+	";
+
+	clean-command: @"del COPKG\*.msi COPKG\*.wixpdb";
 }
