@@ -25,7 +25,7 @@ files[headers] {
     destination-path:"include";
 }
 
-developer-library[libintl[${flavor}]] {
+developer-library[libintl] {
     headers: { 
         headers
     };

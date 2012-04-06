@@ -83,6 +83,10 @@ release
 	uses: {default, vc10};
 }
 
+test
+{
+}
+
 package
 {
 	targets:
@@ -93,13 +97,10 @@ package
 	};
 
 	build-command: @"
+		if ""${BUILT}"" neq ""true"" ptk release
 		cd COPKG
 		autopackage libintl.autopkg libintl-dev-common.autopkg|| goto failed
-        coapp add-feed ""%cd%""
-        coapp --force-scan list
         autopackage libintl-dev.autopkg || goto failed
-        coapp remove-feed ""%cd%""
-        coapp --force-scan list 
 	";
 
 	clean-command: @"del COPKG\*.msi COPKG\*.wixpdb";
