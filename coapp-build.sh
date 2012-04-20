@@ -7,5 +7,7 @@ export C_INCLUDE_PATH=$PWD/../libiconv/include
 export CPLUS_INCLUDE_PATH=$PWD/../libiconv/include
 export LIBRARY_PATH=$PWD/../libiconv/lib/.libs
 cd gettext-runtime
-configure --enable-threads=win32
+mkdir mingw-build
+cd mingw-build
+../configure --enable-threads=win32
 make all

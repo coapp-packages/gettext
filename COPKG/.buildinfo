@@ -19,15 +19,15 @@ default
  
     targets:
     {
-      //"gettext-runtime\libasprintf\.libs\libasprintf-0.dll", // unusable because of deps on mingw, probably not needed anyway
+      //"gettext-runtime\mingw-build\libasprintf\.libs\libasprintf-0.dll", // unusable because of deps on mingw, probably not needed anyway
 
-      "gettext-runtime\intl\.libs\libintl-8.dll",
+      "gettext-runtime\mingw-build\intl\.libs\libintl-8.dll",
       
-	  "gettext-runtime\intl\libintl.h",
+	  "gettext-runtime\mingw-build\intl\libintl.h",
 	  
-      "gettext-runtime\src\.libs\envsubst.exe",
-      "gettext-runtime\src\.libs\ngettext.exe",
-      "gettext-runtime\src\.libs\gettext.exe"
+      "gettext-runtime\mingw-build\src\.libs\envsubst.exe",
+      "gettext-runtime\mingw-build\src\.libs\ngettext.exe",
+      "gettext-runtime\mingw-build\src\.libs\gettext.exe"
     };
  
     build-command: @"
@@ -40,17 +40,12 @@ default
 
       sh coapp-build.sh
       
-      copy gettext-runtime\intl\.libs\libintl.dll.a gettext-runtime\intl\.libs\intl.lib
+      copy gettext-runtime\mingw-build\intl\.libs\libintl.dll.a gettext-runtime\mingw-build\intl\.libs\intl.lib
 
     ";
  
     clean-command: @"
-      del gettext-runtime\intl-csharp\*.pdb 2>NUL
-
-      cd gettext-runtime
-
-      IF EXIST Makefile make distclean
-      if exist gettext-runtime\intl\.libs\intl.lib erase gettext-runtime\intl\.libs\intl.lib
+      rd /s /q gettext-runtime\mingw-build
     ";
 }
 

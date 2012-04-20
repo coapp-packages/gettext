@@ -15,7 +15,7 @@ package {
 }
 
 files[headers] {
-    root: @"..\gettext-runtime\intl";
+    root: @"..\gettext-runtime\mingw-build\intl";
     include: {
         "libintl.h"
     };
