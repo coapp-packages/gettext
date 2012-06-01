@@ -1,4 +1,5 @@
 @import "version.inc";
+@import "common.inc";
 
 #product-info
 {
@@ -55,8 +56,10 @@ vc10
     compiler: vc10;
     platform: x86;
  
-    uses: x86="..\libiconv";
- 
+ 	requires: {
+		"libiconv-dev[vc10]-${libiconv-version}-x86-${libiconv-publickeytoken}",
+	};
+
     targets:
     {
         "COPKG\gettext\Release\libintl.dll",

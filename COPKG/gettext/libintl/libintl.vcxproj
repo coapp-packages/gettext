@@ -77,14 +77,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\..\libiconv\output\vc10\x86\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProgramData)\include\libiconv;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProgramData)\lib\x86;$(LibraryPath)</LibraryPath>
     <TargetName>libintl</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir)..\..\..\libiconv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\..\..\libiconv\output\vc10\x86\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProgramData)\include\libiconv;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProgramData)\lib\x86;$(LibraryPath)</LibraryPath>
     <TargetName>libintl</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
