@@ -1,10 +1,14 @@
 @import "version.inc";
 @import "common.inc";
 
+#define {
+    NewVersion : "${package-version++}";
+}
+
 #product-info
 {
     product-name: "gettext";
-    version: "${upstream-version}";
+    version: "${NewVersion}";
     original-source-location: "http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz";
     original-source-website: "http://www.gnu.org/software/gettext/";
     license: "mixed (GPL and LGPL)";
@@ -90,17 +94,32 @@ package
 {
 	targets:
 	{
-        @"COPKG\libintl[vc10]-${package-version}-x86.msi",
-        @"COPKG\libintl-dev[vc10]-${package-version}-x86.msi",
-        @"COPKG\libintl-dev-common-${package-version}-any.msi",
+        @"COPKG\libintl[vc10]-${NewVersion}-x86.msi",
+        @"COPKG\libintl-dev[vc10]-${NewVersion}-x86.msi",
+        @"COPKG\libintl-dev-common-${NewVersion}-any.msi",
 	};
 
 	build-command: @"
 		if ""${BUILT}"" neq ""true"" ptk release
+        if ""${noversion}"" neq ""true"" ptk update-version
 		cd COPKG
 		autopackage libintl.autopkg libintl-dev-common.autopkg|| goto failed
         autopackage libintl-dev.autopkg || goto failed
 	";
 
 	clean-command: @"del COPKG\*.msi COPKG\*.wixpdb";
+}
+
+update-version {
+    default : false;
+    
+    build-command : @"
+        REM auto-increment version.inc file...
+        
+        pushd COPKG
+        setlocal EnableDelayedExpansion
+        set VERSTRING=#define { package-version: ${NewVersion}; }
+        echo !VERSTRING! > version.inc
+        popd
+    ";
 }
