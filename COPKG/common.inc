@@ -1,3 +1,8 @@
+
+#define { upstream-version: 0.18.1.1; }
+
+#define { author-version: "${upstream-version}"; }
+
 license[lgpl] {
     license: "..\gettext-runtime\libintl\COPYING.LIB-2.1";
     license-url: "http://www.gnu.org/licenses/lgpl-2.1.html";
