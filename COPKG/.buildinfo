@@ -20,19 +20,19 @@ default
     compiler: mingw;
     platform: x86;
  
-    uses: mingw="..\libiconv";
+    //uses: mingw="..\libiconv";
  
     targets:
     {
       //"gettext-runtime\mingw-build\libasprintf\.libs\libasprintf-0.dll", // unusable because of deps on mingw, probably not needed anyway
 
-      "gettext-runtime\mingw-build\intl\.libs\libintl-8.dll",
+      //"gettext-runtime\mingw-build\intl\.libs\libintl-8.dll",
       
 	  "gettext-runtime\mingw-build\intl\libintl.h",
 	  
-      "gettext-runtime\mingw-build\src\.libs\envsubst.exe",
-      "gettext-runtime\mingw-build\src\.libs\ngettext.exe",
-      "gettext-runtime\mingw-build\src\.libs\gettext.exe"
+      //"gettext-runtime\mingw-build\src\.libs\envsubst.exe",
+      //"gettext-runtime\mingw-build\src\.libs\ngettext.exe",
+      //"gettext-runtime\mingw-build\src\.libs\gettext.exe"
     };
  
     build-command: @"
