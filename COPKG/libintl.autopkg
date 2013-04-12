@@ -1,91 +1,49 @@
-@import "version.inc";
-@import "outercurve.inc";
-@import "common.inc";
+@import basic.autopkg;
+@import @"version.inc";
 
-#define { 
-    flavor: "vc10";
-    arch : "x86";
-}
+nuget {
+	nuspec {
+		id = libintl;
+		version : ${package-version};
+		title: Gettext internationalization library;
+		authors: {Free Software Foundation, Vincent Povirk, Rafael Rivera};
+		owners: {CoApp Project, Vincent Povirk};
+		licenseUrl: "http://www.gnu.org/licenses/lgpl-2.1.html"; // PACKAGERS: Do not blindly copy this, some parts of gettext are GPL.
+		projectUrl: "http://github.com/coapp-packages/gettext";
+		iconUrl: "http://www.gnu.org/graphics/gnu-head-sm.jpg";
+		requireLicenseAcceptance:false;
+		summary: Library providing gettext and printf functions;
+		description: @"Library providing the gettext functions, return message strings in the user's native language. Implementations of printf are also included, as message strings of programs using gettext are likely to rely on features missing from the standard implementation.";
+		releaseNotes: "Release of gettext 0.18.1.1's libintl library.";
+		copyright: Copyright 2013;
+		tags: { gettext, libintl, native, CoApp };
 
-package {
-    name: "libintl[${flavor}]";
-    version: "${package-version}";
-    arch : "${arch}";
+	};
+
+	files {
+		include: { ..\gettext-runtime\intl\libintl.h };
+
+		docs: {  ..\gettext-runtime\man\* };
     
-    display-name: "gettext localization library (libintl)";
-    location: "http://coapp.org/repository/${OutputFilename}";
-
-    feed: "http://coapp.org/repository/packages.atom.xml";
-    publisher: "CoApp Project";
-}
-
-files[dlls] {
-    root: @"gettext\Release\";
-  
-    include: {
-        "libintl.dll",
-    };
+		[Win32,v110,dynamic] {
+			lib: { Output\v110\win32\Release\libintl.lib };
+			bin: { Output\v110\win32\Release\libintl.dll };
+		}
     
-    trim-path: all;
-};
+		[Win32,v100,dynamic] {
+			lib: { Output\v100\win32\Release\libintl.lib };
+			bin: { Output\v100\win32\Release\libintl.dll };
+		}
+	};
 
-files[files-to-sign] {
-    include: { 
-        dlls
-    };    
+	props { 
+		
+	};
+
+	targets {
+		Includes += ${pkg_root}${d_include};
+		Defines += "HAVE_LIBINTL_H=1";
+		Defines += "ENABLE_NLS=1";
+	};
 }
 
-provides {
-    feature: "library.libintl.${flavor}" = "0.18.1.1";
-}
-
-metadata {
-    summary: "gettext localization library (libintl)";
-    description: @"${general-description} This package provides a library that programs can use to select and format the appropriate messages for the user's language.";
-    
-    licenses : {
-        lgpl
-    };
-}
-
-compatability-policy {
-    minimum: "0.18.1.1";
-    maximum: "${OneLessThanCurrent}"; // this is the default
-    versions : {
-    }; // if not specified, find the versions by looking at the feeds and finding all the major/minor versions in range.
-}
-
-manifest[libiconv] {
-    assembly : {
-        "libiconv[${flavor}]"
-    };
-    
-    include : { 
-        dlls
-    };
-}
-
-assembly[libintl[${flavor}]] {
-    include : {
-        dlls
-    };
-}
-
-signing {
-    attributes : {
-        company="Outercurve Foundation",
-        description="${Package.PackageDetails.SummaryDescription}",
-        product-name="gettext",
-        product-version="${package-version}",
-        file-version="${package-version}",
-    };
-    
-    replace-signature: true; 
-    include: { 
-        files-to-sign
-    };    
-}
-
-requires {
-    package: "libiconv[${flavor}]-${libiconv-version}-${arch}-${libiconv-publickeytoken}";
-}

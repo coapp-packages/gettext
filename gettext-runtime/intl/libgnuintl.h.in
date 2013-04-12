@@ -20,7 +20,7 @@
 #define _LIBINTL_H 1
 
 #include <locale.h>
-#if (defined __APPLE__ && defined __MACH__) && @HAVE_NEWLOCALE@
+#if (defined __APPLE__ && defined __MACH__) && 0 //@HAVE_NEWLOCALE@
 # include <xlocale.h>
 #endif
 
@@ -313,7 +313,7 @@ extern char *bind_textdomain_codeset (const char *__domainname,
    or gettext() but for which the format string could be the return value
    of _() or gettext() need to add this #include.  Oh well.  */
 
-#if !@HAVE_POSIX_PRINTF@
+#if 1 //!@HAVE_POSIX_PRINTF@
 
 #include <stdio.h>
 #include <stddef.h>
@@ -370,7 +370,7 @@ extern int sprintf (char *, const char *, ...);
 extern int vsprintf (char *, const char *, va_list);
 #endif
 
-#if @HAVE_SNPRINTF@
+#if 1 //@HAVE_SNPRINTF@
 
 #if !(defined snprintf && defined _GL_STDIO_H) /* don't override gnulib */
 #undef snprintf
@@ -385,7 +385,7 @@ extern int vsnprintf (char *, size_t, const char *, va_list);
 
 #endif
 
-#if @HAVE_ASPRINTF@
+#if 1 //@HAVE_ASPRINTF@
 
 #if !(defined asprintf && defined _GL_STDIO_H) /* don't override gnulib */
 #undef asprintf
@@ -400,7 +400,7 @@ extern int vasprintf (char **, const char *, va_list);
 
 #endif
 
-#if @HAVE_WPRINTF@
+#if 1 //@HAVE_WPRINTF@
 
 #undef fwprintf
 #define fwprintf libintl_fwprintf
@@ -435,7 +435,7 @@ extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
 #define setlocale libintl_setlocale
 extern char *setlocale (int, const char *);
 
-#if @HAVE_NEWLOCALE@
+#if 0 //@HAVE_NEWLOCALE@
 
 #undef newlocale
 #define newlocale libintl_newlocale

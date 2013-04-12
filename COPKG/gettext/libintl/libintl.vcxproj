@@ -84,6 +84,8 @@
     <TargetName>libintl</TargetName>
     <OutDir>$(SolutionDir)..\Output\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <OutBinDir>$(OutDir)bin\</OutBinDir>
+    <OutLibDir>$(OutDir)lib\</OutLibDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,6 +94,8 @@
     <TargetName>libintl</TargetName>
     <OutDir>$(SolutionDir)..\Output\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <OutBinDir>$(OutDir)bin\</OutBinDir>
+    <OutLibDir>$(OutDir)lib\</OutLibDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
