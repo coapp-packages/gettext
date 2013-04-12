@@ -310,10 +310,10 @@
 #undef HAVE_GETUID
 
 /* Define if you have the iconv() function and it works. */
-#define HAVE_ICONV 1
+#define HAVE_ICONV 0
 
 /* Define to 1 if you have the <iconv.h> header file. */
-#define HAVE_ICONV_H 1
+#define HAVE_ICONV_H 0
 
 /* Define if you have the 'intmax_t' type in <stdint.h> or <inttypes.h>. */
 #define HAVE_INTMAX_T 1
