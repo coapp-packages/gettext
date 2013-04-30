@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gettext-runtime\intl\bindtextdom.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\dcgettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\dcigettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\dcngettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\dgettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\dngettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\explodename.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\finddomain.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\gettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\hash-string.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\intl-compat.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\l10nflist.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\langprefs.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\loadmsgcat.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\localcharset.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\localealias.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\localename.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\lock.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\log.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\ngettext.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\osdep.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\plural-exp.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\plural.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\printf.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\relocatable.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\setlocale.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\textdomain.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\threadlib.c" />
+    <ClCompile Include="..\..\gettext-runtime\intl\version.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h" />
+    <ClInclude Include="libintl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libintl.def" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{540753C3-27DD-4F96-9466-C6C8F6700312}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libintl</RootNamespace>
+    <ProjectName>$(RootNamespace)</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="ConfigurationSettings">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CallingConvention>Cdecl</CallingConvention>
+    <LibName>libbz2</LibName>
+  </PropertyGroup>
+  <Target Name="Info" BeforeTargets="Build">
+    <Message Text="  Configuration     :  '$(Configuration)'" />
+    <Message Text="  PlatformToolset   :  '$(PlatformToolset)'" />
+    <Message Text="  Platform          :  '$(Platform)'" />
+    <Message Text="  ConfigurationType :  '$(ConfigurationType)'" />
+    <Message Text="  CallingConvention :  '$(CallingConvention)'" />
+  </Target>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|DynamicLibrary'">
+    </OutNameSuffix>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|StaticLibrary'">-static</OutNameSuffix>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|ltcg'">-static-ltcg</OutNameSuffix>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|DynamicLibrary'">-stdcall</OutNameSuffix>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|StaticLibrary'">-static-stdcall</OutNameSuffix>
+    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|ltcg'">-static-stdcall-ltcg</OutNameSuffix>
+    <OutName>$(ProjectName)$(OutNameSuffix)</OutName>
+    <OutDir>..\..\Output\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\$(ProjectName)\</IntDir>
+    <OutBinDir>$(OutDir)bin\</OutBinDir>
+    <OutLibDir>$(OutDir)lib\</OutLibDir>
+    <TargetName>lib\$(OutName)</TargetName>
+    <CallingConvention-libiconv>%(CallingConvention)</CallingConvention-libiconv>
+    <Linkage-libiconv Condition="'$(ConfigurationType)'=='DynamicLibrary'">
+    </Linkage-libiconv>
+    <Linkage-libiconv Condition="'$(ConfigurationType)'=='StaticLibrary'">static</Linkage-libiconv>
+    <Linkage-libiconv Condition="'$(ConfigurationType)'=='ltcg'">static</Linkage-libiconv>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>LOCALEDIR="LOCALEDIR should not be used";LOCALE_ALIAS_PATH="LOCALE_ALIAS_PATH should not be used";LIBDIR="LIBDIR should not be used";INSTALLDIR="INSTALLDIR should not be used";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;BUILDING_LIBINTL;IN_LIBINTL;IN_LIBRARY;HAVE_CONFIG_H;_WINDOWS;LIBINTL_EXPORTS;NO_XMALLOC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(ConfigurationType)'=='DynamicLibrary'">_USRDLL;BUILDING_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <!-- <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile> -->
+      <ImportLibrary>
+      </ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project=".\packages\libiconv.redist\build\native\libiconv.redist.targets" Condition="Exists('.\packages\libiconv.redist\build\native\libiconv.redist.targets')" />
+    <Import Project=".\packages\libiconv\build\native\libiconv.targets" Condition="Exists('.\packages\libiconv\build\native\libiconv.targets')" />
+  </ImportGroup>
+</Project>

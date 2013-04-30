@@ -1,4 +1,3 @@
-@import basic.autopkg;
 @import @"version.inc";
 
 nuget {
@@ -14,7 +13,7 @@ nuget {
 		requireLicenseAcceptance:false;
 		summary: Library providing gettext and printf functions;
 		description: @"Library providing the gettext functions, return message strings in the user's native language. Implementations of printf are also included, as message strings of programs using gettext are likely to rely on features missing from the standard implementation.";
-		releaseNotes: "Release of gettext 0.18.1.1's libintl library.";
+		releaseNotes: "Release of gettext 0.18.2.1's libintl library.";
 		copyright: Copyright 2013;
 		tags: { gettext, libintl, native, CoApp };
 
@@ -24,16 +23,47 @@ nuget {
 		include: { ..\gettext-runtime\intl\libintl.h };
 
 		docs: {  ..\gettext-runtime\man\* };
-    
+        
 		[Win32,v110,dynamic] {
-			lib: { Output\v110\win32\Release\libintl.lib };
-			bin: { Output\v110\win32\Release\libintl.dll };
+			lib: { ..\Output\v110\win32\Release\lib\libintl.lib };
+			bin: { ..\Output\v110\win32\Release\lib\libintl.dll };
+            symbols: { ..\Output\v110\win32\Release\lib\libintl.pdb };
+		}
+    
+		[x64,v110,dynamic] {
+			lib: { ..\Output\v110\x64\Release\lib\libintl.lib };
+			bin: { ..\Output\v110\x64\Release\lib\libintl.dll };
+            symbols: { ..\Output\v110\x64\Release\lib\libintl.pdb };
 		}
     
 		[Win32,v100,dynamic] {
-			lib: { Output\v100\win32\Release\libintl.lib };
-			bin: { Output\v100\win32\Release\libintl.dll };
+			lib: { ..\Output\v100\win32\Release\lib\libintl.lib };
+			bin: { ..\Output\v100\win32\Release\lib\libintl.dll };
+            symbols: { ..\Output\v100\win32\Release\lib\libintl.pdb };
 		}
+
+		[x64,v100,dynamic] {
+			lib: { ..\Output\v100\x64\Release\lib\libintl.lib };
+			bin: { ..\Output\v100\x64\Release\lib\libintl.dll };
+            symbols: { ..\Output\v100\x64\Release\lib\libintl.pdb };
+		}
+        
+		[Win32,v110,static] {
+			lib: { ..\Output\v110\win32\Release\lib\libintl-static.lib };
+		}
+    
+		[x64,v110,static] {
+			lib: { ..\Output\v110\x64\Release\lib\libintl-static.lib };
+		}
+    
+		[Win32,v100,static] {
+			lib: { ..\Output\v100\win32\Release\lib\libintl-static.lib };
+		}
+
+		[x64,v100,static] {
+			lib: { ..\Output\v100\x64\Release\lib\libintl-static.lib };
+		}
+        
 	};
 
 	props { 
@@ -41,7 +71,6 @@ nuget {
 	};
 
 	targets {
-		Includes += ${pkg_root}${d_include};
 		Defines += "HAVE_LIBINTL_H=1";
 		Defines += "ENABLE_NLS=1";
 	};
