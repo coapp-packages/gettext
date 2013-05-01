@@ -52,6 +52,7 @@
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="libintl.h" />
+    <ClInclude Include="libgnuintl.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libintl.def" />
