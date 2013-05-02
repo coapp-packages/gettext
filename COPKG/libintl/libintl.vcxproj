@@ -105,12 +105,14 @@
     <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|StaticLibrary'">-static-stdcall</OutNameSuffix>
     <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|ltcg'">-static-stdcall-ltcg</OutNameSuffix>
     <OutName>$(ProjectName)$(OutNameSuffix)</OutName>
-    <OutDir>..\..\Output\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>.\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\$(ProjectName)\</IntDir>
+    <ProjectRootDir Condition="'$(SolutionDir)' != ''">$(SolutionDir)</ProjectRootDir> 
+    <ProjectRootDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)..\..\</ProjectRootDir> 
+    <OutDir>$(ProjectRootDir)Output\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\</OutDir> 
+    <IntDir>$(ProjectRootDir)Intermediate\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\</IntDir>
     <OutBinDir>$(OutDir)bin\</OutBinDir>
     <OutLibDir>$(OutDir)lib\</OutLibDir>
     <TargetName>lib\$(OutName)</TargetName>
-    <CallingConvention-libiconv>%(CallingConvention)</CallingConvention-libiconv>
+    <CallingConvention-libiconv>$(CallingConvention)</CallingConvention-libiconv>
     <Linkage-libiconv Condition="'$(ConfigurationType)'=='DynamicLibrary'">
     </Linkage-libiconv>
     <Linkage-libiconv Condition="'$(ConfigurationType)'=='StaticLibrary'">static</Linkage-libiconv>
@@ -155,4 +157,15 @@
     <Import Project=".\packages\libiconv.redist\build\native\libiconv.redist.targets" Condition="Exists('.\packages\libiconv.redist\build\native\libiconv.redist.targets')" />
     <Import Project=".\packages\libiconv\build\native\libiconv.targets" Condition="Exists('.\packages\libiconv\build\native\libiconv.targets')" />
   </ImportGroup>
+  <Target Name="DepPackages">
+    <Exec 
+        Command="
+            nuget install .\packages.config -ExcludeVersion -OutputDirectory .\packages >nul
+        "
+        WorkingDirectory="$(MSBuildThisFileDirectory)" 
+        Condition="!Exists('$(MSBuildThisFileDirectory)packages')" />
+  </Target>
+  <PropertyGroup>
+    <BuildDependsOn>DepPackages;$(BuildDependsOn)</BuildDependsOn>
+  </PropertyGroup>
 </Project>

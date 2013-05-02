@@ -20,48 +20,48 @@ nuget {
 	};
 
 	files {
-		include: { ..\gettext-runtime\intl\libintl.h };
+		include: { .\libintl\libintl.h };
 
 		docs: {  ..\gettext-runtime\man\* };
         
 		[Win32,v110,dynamic] {
-			lib: { ..\Output\v110\win32\Release\lib\libintl.lib };
-			bin: { ..\Output\v110\win32\Release\lib\libintl.dll };
-            symbols: { ..\Output\v110\win32\Release\lib\libintl.pdb };
+			lib: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.lib };
+			bin: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.dll };
+            symbols: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.pdb };
 		}
     
 		[x64,v110,dynamic] {
-			lib: { ..\Output\v110\x64\Release\lib\libintl.lib };
-			bin: { ..\Output\v110\x64\Release\lib\libintl.dll };
-            symbols: { ..\Output\v110\x64\Release\lib\libintl.pdb };
+			lib: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.lib };
+			bin: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.dll };
+            symbols: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.pdb };
 		}
     
 		[Win32,v100,dynamic] {
-			lib: { ..\Output\v100\win32\Release\lib\libintl.lib };
-			bin: { ..\Output\v100\win32\Release\lib\libintl.dll };
-            symbols: { ..\Output\v100\win32\Release\lib\libintl.pdb };
+			lib: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.lib };
+			bin: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.dll };
+            symbols: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.pdb };
 		}
 
 		[x64,v100,dynamic] {
-			lib: { ..\Output\v100\x64\Release\lib\libintl.lib };
-			bin: { ..\Output\v100\x64\Release\lib\libintl.dll };
-            symbols: { ..\Output\v100\x64\Release\lib\libintl.pdb };
+			lib: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.lib };
+			bin: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.dll };
+            symbols: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.pdb };
 		}
         
 		[Win32,v110,static] {
-			lib: { ..\Output\v110\win32\Release\lib\libintl-static.lib };
+			lib: { .\libintl\output\v110\win32\release\StaticLibrary\cdecl\lib\libintl-static.lib };
 		}
     
 		[x64,v110,static] {
-			lib: { ..\Output\v110\x64\Release\lib\libintl-static.lib };
+			lib: { .\libintl\output\v110\x64\release\StaticLibrary\cdecl\lib\libintl-static.lib };
 		}
     
 		[Win32,v100,static] {
-			lib: { ..\Output\v100\win32\Release\lib\libintl-static.lib };
+			lib: { .\libintl\output\v100\win32\release\StaticLibrary\cdecl\lib\libintl-static.lib };
 		}
 
 		[x64,v100,static] {
-			lib: { ..\Output\v100\x64\Release\lib\libintl-static.lib };
+			lib: { .\libintl\output\v100\x64\release\StaticLibrary\cdecl\lib\libintl-static.lib };
 		}
         
 	};
