@@ -24,45 +24,19 @@ nuget {
 
 		docs: {  ..\gettext-runtime\man\* };
         
-		[Win32,v110,dynamic] {
-			lib: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.lib };
-			bin: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.dll };
-            symbols: { .\libintl\output\v110\win32\release\DynamicLibrary\cdecl\lib\libintl.pdb };
-		}
-    
-		[x64,v110,dynamic] {
-			lib: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.lib };
-			bin: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.dll };
-            symbols: { .\libintl\output\v110\x64\release\DynamicLibrary\cdecl\lib\libintl.pdb };
-		}
-    
-		[Win32,v100,dynamic] {
-			lib: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.lib };
-			bin: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.dll };
-            symbols: { .\libintl\output\v100\win32\release\DynamicLibrary\cdecl\lib\libintl.pdb };
-		}
-
-		[x64,v100,dynamic] {
-			lib: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.lib };
-			bin: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.dll };
-            symbols: { .\libintl\output\v100\x64\release\DynamicLibrary\cdecl\lib\libintl.pdb };
-		}
+        ("v110,v100", "win32,x64", "debug,release", "dynamic") => {
+            [${0},${1},${2},${3}] {
+                lib: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.lib };
+                bin: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.dll };
+                symbols: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.pdb };
+            };
+        };
         
-		[Win32,v110,static] {
-			lib: { .\libintl\output\v110\win32\release\StaticLibrary\cdecl\lib\libintl-static.lib };
-		}
-    
-		[x64,v110,static] {
-			lib: { .\libintl\output\v110\x64\release\StaticLibrary\cdecl\lib\libintl-static.lib };
-		}
-    
-		[Win32,v100,static] {
-			lib: { .\libintl\output\v100\win32\release\StaticLibrary\cdecl\lib\libintl-static.lib };
-		}
-
-		[x64,v100,static] {
-			lib: { .\libintl\output\v100\x64\release\StaticLibrary\cdecl\lib\libintl-static.lib };
-		}
+        ("v110,v100", "win32,x64", "debug,release", "static") => {
+            [${0},${1},${2},${3}] {
+                lib: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl-static.lib };
+            };
+        };
         
 	};
 
