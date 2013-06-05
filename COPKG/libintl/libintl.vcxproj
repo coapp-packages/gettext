@@ -69,15 +69,8 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <CallingConvention>Cdecl</CallingConvention>
-    <LibName>libbz2</LibName>
   </PropertyGroup>
-  <Target Name="Info" BeforeTargets="Build">
-    <Message Text="  Configuration     :  '$(Configuration)'" />
-    <Message Text="  PlatformToolset   :  '$(PlatformToolset)'" />
-    <Message Text="  Platform          :  '$(Platform)'" />
-    <Message Text="  ConfigurationType :  '$(ConfigurationType)'" />
-    <Message Text="  CallingConvention :  '$(CallingConvention)'" />
-  </Target>
+  <Import Project="$(CoAppEtcDirectory)vcxproj.inc" Condition="Exists('$(CoAppEtcDirectory)vcxproj.inc')" />
   <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
@@ -97,25 +90,9 @@
   <PropertyGroup>
     <LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|DynamicLibrary'"></OutNameSuffix>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|StaticLibrary'">-static</OutNameSuffix>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='Cdecl|ltcg'">-static-ltcg</OutNameSuffix>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|DynamicLibrary'">-stdcall</OutNameSuffix>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|StaticLibrary'">-static-stdcall</OutNameSuffix>
-    <OutNameSuffix Condition="'$(CallingConvention)|$(ConfigurationType)'=='stdcall|ltcg'">-static-stdcall-ltcg</OutNameSuffix>
-    <OutName>$(ProjectName)$(OutNameSuffix)</OutName>
-    <ProjectRootDir Condition="'$(SolutionDir)' != ''">$(SolutionDir)</ProjectRootDir> 
-    <ProjectRootDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory)..\..\</ProjectRootDir> 
-    <OutDir>$(ProjectRootDir)Output\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\</OutDir> 
-    <IntDir>$(ProjectRootDir)Intermediate\$(PlatformToolset)\$(Platform)\$(Configuration)\$(ConfigurationType)\$(CallingConvention)\</IntDir>
-    <OutBinDir>$(OutDir)bin\</OutBinDir>
-    <OutLibDir>$(OutDir)lib\</OutLibDir>
-    <TargetName>lib\$(OutName)</TargetName>
     <CallingConvention-libiconv>$(CallingConvention)</CallingConvention-libiconv>
-    <Linkage-libiconv Condition="'$(ConfigurationType)'=='DynamicLibrary'">
-    </Linkage-libiconv>
-    <Linkage-libiconv Condition="'$(ConfigurationType)'=='StaticLibrary'">static</Linkage-libiconv>
-    <Linkage-libiconv Condition="'$(ConfigurationType)'=='ltcg'">static</Linkage-libiconv>
+    <Linkage-libiconv>$(UsesConfigurationType)</Linkage-libiconv>
+    <Linkage-libiconv_redist>$(UsesConfigurationType)</Linkage-libiconv_redist>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -128,7 +105,6 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <!-- <ModuleDefinitionFile>libintl.def</ModuleDefinitionFile> -->
       <ImportLibrary>
       </ImportLibrary>
     </Link>
@@ -153,8 +129,8 @@
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project=".\packages\libiconv.redist\build\native\libiconv.redist.targets" Condition="Exists('.\packages\libiconv.redist\build\native\libiconv.redist.targets')" />
     <Import Project=".\packages\libiconv\build\native\libiconv.targets" Condition="Exists('.\packages\libiconv\build\native\libiconv.targets')" />
+    <Import Project=".\packages\libiconv.redist\build\native\libiconv.redist.targets" Condition="Exists('.\packages\libiconv.redist\build\native\libiconv.redist.targets')" />
   </ImportGroup>
   <Target Name="DepPackages">
     <Exec 
@@ -162,7 +138,7 @@
             nuget install .\packages.config -ExcludeVersion -OutputDirectory .\packages >nul
         "
         WorkingDirectory="$(MSBuildThisFileDirectory)" 
-        Condition="!Exists('$(MSBuildThisFileDirectory)packages')" />
+        Condition="Exists('$(MSBuildThisFileDirectory)packages.config')" />
   </Target>
   <PropertyGroup>
     <BuildDependsOn>DepPackages;$(BuildDependsOn)</BuildDependsOn>

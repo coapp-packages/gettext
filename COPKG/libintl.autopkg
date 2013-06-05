@@ -19,22 +19,27 @@ nuget {
 
 	};
 
+    dependencies {
+        packages : {
+            libiconv/1.14.0.10;
+        };
+    }
 	files {
 		include: { .\libintl\libintl.h };
 
 		docs: {  ..\gettext-runtime\man\* };
         
-        ("v110,v100", "win32,x64", "debug,release", "dynamic") => {
-            [${0},${1},${2},${3}] {
-                lib: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.lib };
-                bin: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.dll };
-                symbols: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl.pdb };
+		("v100,v110", "Win32,x64", "release,debug", "Dynamic", "cdecl") => {
+            [${0},${1},${2},${3},${4}] {
+                lib: {.\libintl\output\${0}\${1}\${2}\${3}\${4}\lib\libintl.lib };
+                bin: {.\libintl\output\${0}\${1}\${2}\${3}\${4}\lib\libintl.dll };
+                symbols: {.\libintl\output\${0}\${1}\${2}\${3}\${4}\lib\libintl.pdb };
             };
         };
         
-        ("v110,v100", "win32,x64", "debug,release", "static") => {
-            [${0},${1},${2},${3}] {
-                lib: {.\libintl\output\${0}\${1}\${2}\${3}Library\cdecl\lib\libintl-static.lib };
+		("v100,v110", "Win32,x64", "release,debug", "Static,ltcg", "cdecl") => {
+            [${0},${1},${2},${3},${4}] {
+                lib: {.\libintl\output\${0}\${1}\${2}\${3}\${4}\lib\libintl.lib };
             };
         };
         
