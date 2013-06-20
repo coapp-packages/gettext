@@ -2,6 +2,11 @@
 
 default {
     
+    .Exec {
+        Condition="Exists('$(MSBuildThisFileDirectory)libintl\packages.config')";
+        Command = @"nuget install $(MSBuildThisFileDirectory)libintl\packages.config -x -OutputDirectory .\libintl\packages >nul";
+    };
+
 	("v110, v100", "Win32, x64", "Debug,Release", "Dynamic, Static, ltcg", "cdecl") => {
 		.PushEnvironment {};
 		.LoadSystemEnvironment {};

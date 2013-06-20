@@ -132,15 +132,4 @@
     <Import Project=".\packages\libiconv\build\native\libiconv.targets" Condition="Exists('.\packages\libiconv\build\native\libiconv.targets')" />
     <Import Project=".\packages\libiconv.redist\build\native\libiconv.redist.targets" Condition="Exists('.\packages\libiconv.redist\build\native\libiconv.redist.targets')" />
   </ImportGroup>
-  <Target Name="DepPackages">
-    <Exec 
-        Command="
-            nuget install .\packages.config -ExcludeVersion -OutputDirectory .\packages >nul
-        "
-        WorkingDirectory="$(MSBuildThisFileDirectory)" 
-        Condition="Exists('$(MSBuildThisFileDirectory)packages.config')" />
-  </Target>
-  <PropertyGroup>
-    <BuildDependsOn>DepPackages;$(BuildDependsOn)</BuildDependsOn>
-  </PropertyGroup>
 </Project>
